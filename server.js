@@ -26,9 +26,10 @@ app.use((req, res, next) => {
   })
 })
 
-app.use((req, res, next) => {
-  res.render('maintanance.hbs')
-})
+// app.use((req, res, next) => {
+//   res.render('maintanance.hbs')
+//   next()
+// })
 
 app.use(express.static(__dirname + '/public'));
 
@@ -43,7 +44,14 @@ app.use(express.static(__dirname + '/public'));
       pageTitle: 'the home pagee',
       welcomeMessage: 'Welcome to home page.'
     })
-  })
+  });
+
+  app.get('/projects', (req, res) => {
+    res.render('projects.hbs', {
+      pageTitle: 'Projects',
+      welcomeMessage: 'Hi, Welcome to project page'
+    });
+  });
 
   app.listen(port, () => {
     console.log(`App is listining to port ${port}`);
